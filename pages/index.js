@@ -19,8 +19,6 @@ const GET_MESSAGES = gql`
 const Index = ({ pokemones }) => {
 
 
-  console.log(pokemones)
-
   return (
     <div className={styles.container}>
       <Head>
