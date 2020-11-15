@@ -7,9 +7,10 @@ const HeaderCart = () => {
             <ul>
                 <li style={{ display: 'flex' }}>
                     <div>
-                        <a href='/'style={{color: 'black'}}>
+                        <img src='/heart.svg' alt='likes' height={22} width={23} />
+                        {/* <a href='/'style={{color: 'black'}}>
                             <i className="fa fa-heart" aria-hidden="true" style={{ fontSize: 22 }}></i>
-                        </a>
+                        </a> */}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                         <Badge pill={true} variant="success" style={{ fontSize: 9, background: '#7fad39' }}>1</Badge>
@@ -18,9 +19,10 @@ const HeaderCart = () => {
                 </li>
                 <li style={{ display: 'flex' }}>
                     <div>
-                        <a href='/'style={{color: 'black'}}>
+                    <img src='/shopping-bag.png' alt='likes' height={22} width={23} />
+                        {/* <a href='/'style={{color: 'black'}}>
                             <i className="fa fa-shopping-bag" aria-hidden="true" style={{ fontSize: 22 }}></i>
-                        </a>
+                        </a> */}
                     </div>
                     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                         <Badge pill={true} variant="success" style={{ fontSize: 9, background: '#7fad39' }}>3</Badge>
