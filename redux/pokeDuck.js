@@ -2,7 +2,7 @@ import axios from 'axios'
 
 //constantes
 const dataInicial = {
-    array: ''
+    array: []
 }
 
 const OBTENER_POKEMONES_EXITO = 'OBTENER_POKEMONES_EXITO';

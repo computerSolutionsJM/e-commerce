@@ -1,17 +1,12 @@
 import '../styles/globals.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { wrapper } from '../redux/store'
 import { useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
+
 
 
 const WrappedApp = ({ Component, pageProps }) => {
-  useEffect(() => {
-    import("jquery").then($ => {
-      // jQuery must be installed to the `window`:
-      window.$ = window.jQuery = $;
-      return import("bootstrap");
-    });
-  }, []);
+
   return <Component {...pageProps} />
 }
 

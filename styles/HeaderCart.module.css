@@ -1,0 +1,10 @@
+.headerCart_main{
+    display: flex;
+}
+
+.headerCart_main ul {
+    display: flex;
+}
+.headerCart_main ul li {
+   margin-right: 15px;
+}

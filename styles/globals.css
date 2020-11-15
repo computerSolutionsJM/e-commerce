@@ -11,6 +11,14 @@ a {
   text-decoration: none;
 }
 
+ul {
+  margin-bottom: 0 !important;
+}
+
+li {
+  list-style: none;
+}
+
 * {
   box-sizing: border-box;
 }
