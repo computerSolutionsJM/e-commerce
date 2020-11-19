@@ -1,11 +1,17 @@
-import styles from '../styles/Navigation.module.css'
-import HeaderCart from '../components/HeaderCart'
-import Link from 'next/link'
+import styles from '../styles/Navigation.module.css';
+import HeaderCart from '../components/HeaderCart';
+import Link from 'next/link';
 import { useRouter } from "next/router";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { viewModalNavigation } from '../redux/ModalNavigationDuck';
+import ModalNavigation from '../components/ModalNavigation'
 
-const Navigation = (props) => {
-  
+const Navigation = ({ viewModalNavigation }) => {
+
   const router = useRouter();
+  const handleShow = () => viewModalNavigation();
+
   return (
     <header>
       <div className={styles.navbar_main}>
@@ -37,16 +43,25 @@ const Navigation = (props) => {
         <div className={styles.navbar_main_menu_desktop}>
           <HeaderCart />
         </div>
-        <div className={styles.navbar_main_bars}>
-          <div className={styles.navbar_main_bars_icon}>
-            <span><i className="fa fa-bars" aria-hidden="true" style={{ fontSize: 21 }}></i></span>
+        <div className={styles.navbar_main_bars} >
+          <div className={styles.navbar_main_bars_icon} onClick={handleShow}>
+            <img src='/bars.svg' alt='likes' width={19} />
           </div>
         </div>
       </div>
-
+      <div className={styles.navbar_main_menu_desktop_2}>
+        <HeaderCart />
+      </div>
+      <ModalNavigation />
     </header>
 
   );
 }
 
-export default Navigation;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Navigation);

@@ -1,0 +1,60 @@
+.backdrop_container{
+	display: none;
+	position: fixed;
+	z-index: 2; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.4);  
+	-webkit-animation: fadeIn 1.2s ease-in-out;
+	animation: fadeIn 1.2s ease-in-out;
+}
+
+
+.sidenav_container {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	background-color: whitesmoke;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.imgLogo{
+	display: flex;
+	width: 100%;
+}
+.headerCart{
+	display: flex;
+	width: 100%;
+	margin-top: 28px;
+	margin-bottom: 28px;
+	
+}
+
+.headerCart ul{
+	padding-left: 0;
+}
+
+.ul_nav{
+	padding-left: 0;
+
+}
+
+.ul_nav li{
+	padding: 12px 0;
+	border-bottom: 1px solid #4c4c4c;
+}
+
+
