@@ -9,10 +9,16 @@ import ContainerMain from '../components/ContainerMain'
 
 const GET_MESSAGES = gql`
 {
-      messages {
-            _id
-            title
-            content
+  obtenerProductos {
+          id
+          nombre
+          descripcion
+          precio
+          unidadMedida
+          nomenclaturaMedida
+          urlImagen
+          disponible
+          creado
       }
 }
 `
@@ -23,7 +29,7 @@ const Index = ({ pokemones }) => {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Home - Ogani</title>
         <meta charSet="UTF-8" />
         <meta name="description" content="Ogani Template" />
         <meta name="keywords" content="Ogani, unica, creative, html" />
@@ -44,13 +50,13 @@ const Index = ({ pokemones }) => {
 
 
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   async ({ store, params }) => {
-//     const client = new GraphQLClient('https://backend.jhonnyzb.now.sh/', { headers: {} })
-//     const { messages } = await client.request(GET_MESSAGES)
-//     store.dispatch(obtenerPokemones(messages))
-//   }
-// )
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, params }) => {
+    const client = new GraphQLClient('https://enigmatic-refuge-01390.herokuapp.com/', { headers: {} })
+    const { obtenerProductos } = await client.request(GET_MESSAGES)
+    store.dispatch(obtenerPokemones(obtenerProductos))
+  }
+) 
 
 
 const mapStateToProps = (state) => ({

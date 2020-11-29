@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { wrapper } from '../redux/store'
-import { useEffect } from 'react'
 
 
 
