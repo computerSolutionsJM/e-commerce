@@ -75,7 +75,7 @@ const Index = ({ pokemones }) => {
                 </tr>
                 <tr>
                   <td>NEXT_PUBLIC_ENV_LOCAL_VARIABLE</td>
-                  <td>{process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE}</td>
+                  <td></td>
                   <td>
                     <Code>.env.local</Code>
                   </td>
@@ -150,9 +150,7 @@ const Index = ({ pokemones }) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
-    console.log('[Node.js only] ENV_VARIABLE:', process.env.ENV_VARIABLE)
-    // console.log('[Node.js only] ENV_LOCAL_VARIABLE:', process.env.ENV_LOCAL_VARIABLE)
-    const client = new GraphQLClient(process.env.ENV_VARIABLE, { headers: {} })
+    const client = new GraphQLClient(process.env.ENV_LOCAL_VARIABLE, { headers: {} })
     const { obtenerProductos } = await client.request(GET_MESSAGES)
     store.dispatch(obtenerPokemones(obtenerProductos))
   }
