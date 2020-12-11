@@ -27,7 +27,6 @@ const Code = (p) => <code className={styles.inlineCode} {...p} />
 
 const Index = ({ pokemones }) => {
 
-  console.log(pokemones)
 
   return (
     <>
@@ -137,7 +136,7 @@ const Index = ({ pokemones }) => {
               <Code>.env.local</Code> or <Code>.env.development</Code>.
       </p>
           </div>
-        </div>  
+        </div>
       </ContainerMain>
     </>
 
@@ -152,8 +151,8 @@ const Index = ({ pokemones }) => {
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
     console.log('[Node.js only] ENV_VARIABLE:', process.env.ENV_VARIABLE)
-    console.log('[Node.js only] ENV_LOCAL_VARIABLE:', process.env.ENV_LOCAL_VARIABLE)
-    const client = new GraphQLClient('https://backend-ecommerce-j.herokuapp.com/', { headers: {} })
+    // console.log('[Node.js only] ENV_LOCAL_VARIABLE:', process.env.ENV_LOCAL_VARIABLE)
+    const client = new GraphQLClient(process.env.ENV_VARIABLE, { headers: {} })
     const { obtenerProductos } = await client.request(GET_MESSAGES)
     store.dispatch(obtenerPokemones(obtenerProductos))
   }
