@@ -25,6 +25,7 @@ const GET_MESSAGES = gql`
 
 const Index = ({ pokemones }) => {
 
+ console.log(pokemones)
 
   return (
     <>
@@ -52,7 +53,7 @@ const Index = ({ pokemones }) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async ({ store, params }) => {
-    const client = new GraphQLClient('https://enigmatic-refuge-01390.herokuapp.com/', { headers: {} })
+    const client = new GraphQLClient('https://backend-ecommerce-j.herokuapp.com/', { headers: {} })
     const { obtenerProductos } = await client.request(GET_MESSAGES)
     store.dispatch(obtenerPokemones(obtenerProductos))
   }
