@@ -5,6 +5,7 @@ import { wrapper } from '../redux/store'
 import { obtenerPokemones } from '../redux/pokeDuck'
 import { gql, GraphQLClient } from 'graphql-request'
 import ContainerMain from '../components/ContainerMain'
+import { useEffect } from 'react'
 
 
 const GET_MESSAGES = gql`
@@ -27,6 +28,12 @@ const Code = (p) => <code className={styles.inlineCode} {...p} />
 
 const Index = ({ pokemones }) => {
 
+  useEffect(() => {
+     console.log('cliente',process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE)
+  }, []); 
+
+
+  console.log(pokemones)
 
   return (
     <>
