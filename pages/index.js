@@ -24,7 +24,7 @@ const GET_MESSAGES = gql`
 }
 `
 
-const Index = ({ obtenerProductos }) => {
+const Index = ({ pokemones }) => {
 
   return (
     <>
@@ -39,7 +39,7 @@ const Index = ({ obtenerProductos }) => {
       </Head>
       <ContainerMain>
         <h1>index</h1>
-       {obtenerProductos.map((item, index)=>{
+       {pokemones.map((item, index)=>{
          return (
            <h1 key={index}>{item.descripcion}</h1>
          )
@@ -63,9 +63,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(obtenerPokemones(obtenerProductos))
 
     return {
-      props: {
-        obtenerProductos,
-      },
+      props: { },
       revalidate: 1,
     }
   }
