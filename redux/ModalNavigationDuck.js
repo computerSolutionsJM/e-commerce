@@ -20,10 +20,9 @@ export default function modalNavigationReducer(state = dataInicial, action) {
 
 
 
-
-
 //acciones
-export const viewModalNavigation = () => async (dispatch, getState) => {
+export const viewModalNavigation = (flag) => async (dispatch, getState) => {
+    console.log('aquiii', flag)
     try {
         dispatch({
             type: VIEW_MODAL_NAVIGATION,

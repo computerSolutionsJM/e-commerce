@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import ContainerMain from '../components/ContainerMain'
+import ContainerMain from '../components/shared/ContainerMain'
+import { Row, Col, CardDeck, Card } from 'react-bootstrap';
 
 const Shop = () => {
+
   return (
     <>
       <Head>
@@ -14,7 +16,28 @@ const Shop = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ContainerMain>
-        <h1>shop</h1>
+        <Row style={{ marginTop: 10 }}>
+          <Col >1 of 2</Col>
+          <Col lg={9}>
+            <Row>
+              <Col  md={6} lg={4}>
+                <Card>
+                  <Card.Img variant="top" src="/index/fotoPrueba.jpg" />
+                  <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                      This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.
+               </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                  </Card.Footer>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </ContainerMain>
     </>
   );

@@ -1,11 +1,11 @@
-import styles from '../styles/Navigation.module.css';
-import HeaderCart from '../components/HeaderCart';
+import styles from '../../styles/shared/Navigation.module.css';
+import HeaderCart from './HeaderCart';
 import Link from 'next/link';
 import { useRouter } from "next/router";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { viewModalNavigation } from '../redux/ModalNavigationDuck';
-import ModalNavigation from '../components/ModalNavigation'
+import { viewModalNavigation } from '../../redux/ModalNavigationDuck';
+import ModalNavigation from './ModalNavigation'
 
 const Navigation = ({ viewModalNavigation }) => {
 
@@ -60,7 +60,8 @@ const Navigation = ({ viewModalNavigation }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
+    viewModalNavigation: () => dispatch(viewModalNavigation('567'))
+    //viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
   }
 }
 

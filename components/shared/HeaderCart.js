@@ -1,4 +1,4 @@
-import styles from '../styles/HeaderCart.module.css'
+import styles from '../../styles/shared/HeaderCart.module.css'
 import { Badge } from 'react-bootstrap';
 
 

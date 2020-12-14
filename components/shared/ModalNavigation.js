@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
-import { viewModalNavigation } from '../redux/ModalNavigationDuck';
-import HeaderCart from '../components/HeaderCart';
-import styles from '../styles/ModalNavigation.module.css'
+import { viewModalNavigation } from '../../redux/ModalNavigationDuck';
+import HeaderCart from './HeaderCart';
+import styles from '../../styles/shared/ModalNavigation.module.css'
 
 
 
@@ -13,7 +13,7 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
     const router = useRouter();
 
     const handleClose = () => {
-        viewModalNavigation()
+        viewModalNavigation('234')
 
     };
 
@@ -22,7 +22,7 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
         router.push(route_)
     }
 
-  
+
 
     return (
         <>
@@ -50,6 +50,23 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
                             </li>
                         </ul>
                     </nav>
+                    <div style={{ marginTop: 20 }}>
+                        <ul style={{ display: 'flex', paddingInlineStart: 0 }}>
+                            <li><img src='/shared/facebook.svg' alt='facebook' width={7} style={{ marginRight: 10, cursor: 'pointer' }} /></li>
+                            <li><img src='/shared/twiter.svg' alt='twiter' width={16} style={{ margin: '0 10px', cursor: 'pointer' }} /></li>
+                            <li><img src='/shared/instagram.svg' alt='instagram' width={16} style={{ marginLeft: 10, cursor: 'pointer' }} /></li>
+                        </ul>
+                    </div>
+        
+                    <div style={{ marginTop: 20 }}>
+                        <ul style={{ display: 'flex', paddingInlineStart: 0, flexDirection: 'column' }}>
+                            <li>
+                                <img src='/shared/email.svg' alt='likes' width={20} style={{ cursor: 'pointer', marginRight: 10 }} />
+                                <span style={{ borderRight: '2px solid #DDDDDD', paddingRight: 60, fontSize: 15 }}>hello@colorlib.com</span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
@@ -60,8 +77,10 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
-        viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
+        //viewModalNavigation:  bindActionCreators(viewModalNavigation, dispatch)
+        viewModalNavigation: (f) => dispatch(viewModalNavigation(f))
     }
 }
 
