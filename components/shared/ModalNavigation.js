@@ -29,18 +29,18 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
             <div className={styles.sidenav_container} style={showModal ? { width: '80%' } : { width: 0 }} >
                 <div style={{ width: '100%', padding: '25px 18px' }}>
                     <div className={styles.imgLogo} >
-                        <img src='/logoMain.png' />
+                        <img src='/logoMain.png' alt='logo' />
                     </div>
                     <div className={styles.headerCart} >
                         <HeaderCart />
                     </div>
                     <nav>
                         <ul className={styles.ul_nav}>
-                            <li>
-                                <span onClick={() => route1('/')} style={router.pathname === "/" ? { color: '#7fad39' } : { color: 'black' }}>Home</span>
+                            <li onClick={() => route1('/')}>
+                                <span style={router.pathname === "/" ? { color: '#7fad39' } : { color: 'black' }}>Home</span>
                             </li>
-                            <li>
-                                <span onClick={() => route1('/shop')} style={router.pathname === "/shop" ? { color: '#7fad39' } : { color: 'black' }}>Shop</span>
+                            <li onClick={() => route1('/shop')}>
+                                <span style={router.pathname === "/shop" ? { color: '#7fad39' } : { color: 'black' }}>Shop</span>
                             </li>
                             <li>
                                 <span>Page</span>
@@ -57,7 +57,7 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
                             <li><img src='/shared/instagram.svg' alt='instagram' width={16} style={{ marginLeft: 10, cursor: 'pointer' }} /></li>
                         </ul>
                     </div>
-        
+
                     <div style={{ marginTop: 20 }}>
                         <ul style={{ display: 'flex', paddingInlineStart: 0, flexDirection: 'column' }}>
                             <li>

@@ -15,7 +15,7 @@ const Navigation = ({ viewModalNavigation }) => {
   return (
     <header>
       <div className={styles.navbar_main}>
-        <div className={styles.navbar_main_img}><img src='/logoMain.png' /></div>
+        <div className={styles.navbar_main_img}><img src='/logoMain.png' alt='logo' /></div>
         <nav className={styles.navbar_main_menu}>
           <ul>
             <li>

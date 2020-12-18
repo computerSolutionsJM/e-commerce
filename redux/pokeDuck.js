@@ -33,3 +33,4 @@ export const obtenerPokemones = (users) => async (dispatch, getState) => {
         console.log(error)
     }
 }
+

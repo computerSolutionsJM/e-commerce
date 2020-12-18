@@ -1,15 +1,21 @@
 import Head from 'next/head'
-import { connect } from 'react-redux'
 import { wrapper } from '../redux/store'
+import { connect } from 'react-redux';
 import { obtenerPokemones } from '../redux/pokeDuck'
-import { getCategorias } from '../redux/ObtenerCategoriasDuck'
+import { getCategorias } from '../redux/CategoriasDuck'
 import { gql, GraphQLClient } from 'graphql-request'
 import ContainerMain from '../components/shared/ContainerMain'
-import { Row, Col, CardDeck, Card } from 'react-bootstrap';
+import TitleProducts from '../components/shared/TitleProducts'
+import Filters from '../components/index/Filters'
+import Products from '../components/index/Products'
+import { Row, Col } from 'react-bootstrap'
+import store from '../redux/store'
+
 
 const GET_MESSAGES = gql`
 {
   obtenerProductos {
+
           id
           nombre
           descripcion
@@ -31,8 +37,8 @@ const GET_CATEGORIAS = gql`
 }
 `
 
-const Index = ({ pokemones }) => {
-
+const Index = ({ productos }) => {
+ 
   return (
     <>
       <Head>
@@ -45,36 +51,21 @@ const Index = ({ pokemones }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ContainerMain>
-        <Row style={{ marginTop: 10 }}>
-          <Col >1 of 2</Col>
+        <Row style={{ marginTop: 30 }}>
+          <Col>
+            <Filters />
+          </Col>
           <Col lg={9}>
+            <Row>
+              <TitleProducts title='Todos' numeroProductos={productos.length}/>
+            </Row>
             <Row >
-              {pokemones.map((item, index) => {
-                return (
-                  <Col md={6} lg={4}>
-                    <Card key={index} style={{marginBottom: 5}}>
-                      <Card.Img variant="top" src="/index/fotoPrueba.jpg" />
-                      <Card.Body>
-                        <Card.Title>Card title</Card.Title>
-                        <Card.Text>
-                          This is a wider card with supporting text below as a natural lead-in to
-                          additional content. This content is a little bit longer.
-                      </Card.Text>
-                      </Card.Body>
-                      <Card.Footer>
-                        <small className="text-muted">Last updated 3 mins ago</small>
-                      </Card.Footer>
-                    </Card>
-                  </Col>
-                )
-              })}
+              <Products productos={productos} />
             </Row>
           </Col>
         </Row>
       </ContainerMain>
     </>
-
-
   )
 }
 
@@ -93,11 +84,13 @@ export const getStaticProps = wrapper.getStaticProps(
   }
 )
 
+
+
 const mapStateToProps = (state) => ({
-  pokemones: state.pokemones.array,
+  productos: state.pokemones.array,
 })
 
-export default connect(mapStateToProps, null)(Index)
+export default connect(mapStateToProps, null)(Index);
 
 
 

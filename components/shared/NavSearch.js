@@ -1,6 +1,7 @@
 import styles from '../../styles/shared/Navsearch.module.css'
 import { Accordion } from 'react-bootstrap';
 import { connect } from 'react-redux'
+import Link from 'next/link';
 
 
 const NavSearch = ({ categorias }) => {
@@ -22,7 +23,10 @@ const NavSearch = ({ categorias }) => {
                             <ul>
                                 {categorias.map((item, index) => {
                                     return (
-                                        <li style={{marginBottom: 10, cursor:'pointer'}} key={index}>{item.nombre}</li>
+                                        <Link href={'/[idCategory]'} as={`/${item.id}`} key={index}>
+                                            <li style={{ marginBottom: 10, cursor: 'pointer' }} >{item.nombre}</li>
+                                        </Link>
+
                                     )
                                 })}
                             </ul>

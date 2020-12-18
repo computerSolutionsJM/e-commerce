@@ -3,7 +3,7 @@ import { HYDRATE, createWrapper } from 'next-redux-wrapper'
 import thunkMiddleware from 'redux-thunk'
 import pokeReducer from './pokeDuck'
 import modalNavigationReducer from './ModalNavigationDuck'
-import getCategoriasReducer from './ObtenerCategoriasDuck'
+import CategoriasReducer from './CategoriasDuck'
 
 const bindMiddleware = (middleware) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +16,7 @@ const bindMiddleware = (middleware) => {
   const combinedReducer = combineReducers({
     pokemones: pokeReducer,
     modalNavigation : modalNavigationReducer,
-    categorias: getCategoriasReducer
+    categorias: CategoriasReducer
   })
 
 
