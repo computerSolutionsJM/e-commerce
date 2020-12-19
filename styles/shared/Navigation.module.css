@@ -1,3 +1,10 @@
+.header_main {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 2;
+}
 .navbar_main {
       display: flex;
       padding: 15px 0;
@@ -40,7 +47,7 @@
       align-items: center;
 }
 
-.navbar_main_menu_desktop_2{
+.navbar_main_menu_desktop_2 {
       display: flex;
       justify-content: center;
 }
@@ -71,7 +78,7 @@
       .navbar_main_bars {
             display: none;
       }
-      .navbar_main_menu_desktop_2{
+      .navbar_main_menu_desktop_2 {
             display: none;
       }
 }

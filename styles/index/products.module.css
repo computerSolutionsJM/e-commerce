@@ -15,7 +15,6 @@
 }
 .product_grid .product_sale_label{
     color: #fff;
-    background-color: #76b713;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -79,19 +78,29 @@
 }
 .product_grid .title span:hover{ color: #76b713; }
 .product_grid .rating{
-    width: 80px;
+    width: 70px;
     padding: 0;
     margin: 0 0 9px;
-    list-style: none;
-    vertical-align: top;
     display: inline-block;
+    border: 2px solid #dddddd;
 }
-.product_grid .rating li{
-    color: #222;
-    font-size: 11px;
+.product_grid .rating span{
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.product_grid .unity{
+    width: 10px;
+    padding: 0;
+    margin: 0 2px 9px;
     display: inline-block;
+    
 }
-.product_grid .rating li.far{ color: #777; }
+.product_grid .unity span{
+   font-size: 18px;
+   margin: 0 10px;
+}
+
 .product_grid .price{
     color: #76b713;
     font-size: 18px;
@@ -108,6 +117,19 @@
 }
 @media screen and (max-width:990px){
     .product_grid{ margin: 0 0 30px; }
+    .product_grid .title { font-size: 14px;}
+    .product_grid .price{ font-size: 13px;}
+    .product_grid .unity span{
+        font-size: 14px;
+        margin: 0;
+     }
 }
+
+@media screen and (max-width: 352px){
+    .product_grid .product_content{
+        padding: 15px 0 3px;
+    }
+}
+
 
 

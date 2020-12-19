@@ -35,12 +35,12 @@ query obtenerCategoriaDetalle($id: ID!) {
 }
 `
 
-const Category = ({ obtenerCategoriaDetalle, categoria_productos, categoria_nombre }) => {
-   
+const Category = ({ categoria_productos, categoria_nombre }) => {
+
     return (
         <>
             <Head>
-                <title>Ogani - {obtenerCategoriaDetalle.nombre}</title>
+                <title>Ogani - {categoria_nombre}</title>
                 <meta charSet="UTF-8" />
                 <meta name="description" content="Ogani Template" />
                 <meta name="keywords" content="Ogani, unica, creative, html" />
@@ -51,7 +51,7 @@ const Category = ({ obtenerCategoriaDetalle, categoria_productos, categoria_nomb
             <ContainerMain>
                 <Row style={{ marginTop: 30 }}>
                     <Col>
-                        <Filters />
+                        <Filters productos={categoria_productos} />
                     </Col>
                     <Col lg={9}>
                         <Row>
@@ -71,13 +71,13 @@ const Category = ({ obtenerCategoriaDetalle, categoria_productos, categoria_nomb
 
 
 export async function getStaticPaths() {
-    const paths = [
-        { params: { idCategory: '5fd6c2773ca6c16786f1ca4d' } },
-        { params: { idCategory: '5fc71a14aa54bf2248249c1d' } },
-        { params: { idCategory: '5fd6c2843ca6c16786f1ca4e' } },
-        { params: { idCategory: '5fd6c28d3ca6c16786f1ca4f' } },
-        { params: { idCategory: '5fd6c2933ca6c16786f1ca50' } },
-    ]
+    const client = new GraphQLClient(process.env.ENV_LOCAL_VARIABLE, { headers: {} })
+    const { obtenerCategorias } = await client.request(GET_CATEGORIAS)
+    const paths = obtenerCategorias.map(item => {
+        return {
+            params: { idCategory: item.id }
+        }
+    })
     return {
         paths,
         fallback: false
@@ -93,7 +93,7 @@ export const getStaticProps = wrapper.getStaticProps(
         store.dispatch(getCategorias(obtenerCategorias))
         store.dispatch(getCategoriaDetalle(obtenerCategoriaDetalle))
         return {
-            props: { obtenerCategoriaDetalle },
+            props: {},
             revalidate: 1,
         }
     }

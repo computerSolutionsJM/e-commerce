@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { wrapper } from '../redux/store'
 import { connect } from 'react-redux';
-import { obtenerPokemones } from '../redux/pokeDuck'
+import { useEffect } from 'react'
+import { obtenerProductos_ } from '../redux/productosDuck'
 import { getCategorias } from '../redux/CategoriasDuck'
 import { gql, GraphQLClient } from 'graphql-request'
 import ContainerMain from '../components/shared/ContainerMain'
@@ -9,7 +10,6 @@ import TitleProducts from '../components/shared/TitleProducts'
 import Filters from '../components/index/Filters'
 import Products from '../components/index/Products'
 import { Row, Col } from 'react-bootstrap'
-import store from '../redux/store'
 
 
 const GET_MESSAGES = gql`
@@ -37,8 +37,13 @@ const GET_CATEGORIAS = gql`
 }
 `
 
-const Index = ({ productos }) => {
- 
+const Index = ({ productos, changeSort }) => {
+
+  
+  useEffect(() => {
+  }, [changeSort])
+
+
   return (
     <>
       <Head>
@@ -53,11 +58,11 @@ const Index = ({ productos }) => {
       <ContainerMain>
         <Row style={{ marginTop: 30 }}>
           <Col>
-            <Filters />
+            <Filters productos={productos} />
           </Col>
           <Col lg={9}>
             <Row>
-              <TitleProducts title='Todos' numeroProductos={productos.length}/>
+              <TitleProducts title='Todos' numeroProductos={productos.length} />
             </Row>
             <Row >
               <Products productos={productos} />
@@ -76,7 +81,7 @@ export const getStaticProps = wrapper.getStaticProps(
     const { obtenerProductos } = await client.request(GET_MESSAGES)
     const { obtenerCategorias } = await client.request(GET_CATEGORIAS)
     store.dispatch(getCategorias(obtenerCategorias))
-    store.dispatch(obtenerPokemones(obtenerProductos))
+    store.dispatch(obtenerProductos_(obtenerProductos))
     return {
       props: {},
       revalidate: 1,
@@ -87,7 +92,8 @@ export const getStaticProps = wrapper.getStaticProps(
 
 
 const mapStateToProps = (state) => ({
-  productos: state.pokemones.array,
+  productos: state.productos.productos,
+  changeSort: state.productos.changeSort
 })
 
 export default connect(mapStateToProps, null)(Index);
