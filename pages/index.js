@@ -1,21 +1,24 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
+
 import { wrapper } from '../redux/store'
 import { connect } from 'react-redux';
-import { useEffect } from 'react'
-import { obtenerProductos_ } from '../redux/productosDuck'
+import { detalleProducto, obtenerProductos_ } from '../redux/productosDuck'
 import { getCategorias } from '../redux/CategoriasDuck'
+
 import { gql, GraphQLClient } from 'graphql-request'
+import { Row, Col } from 'react-bootstrap'
+
 import ContainerMain from '../components/shared/ContainerMain'
 import TitleProducts from '../components/shared/TitleProducts'
 import Filters from '../components/index/Filters'
 import Products from '../components/index/Products'
-import { Row, Col } from 'react-bootstrap'
+import DetailProduct from '../components/shared/Detailproduct'
 
 
 const GET_MESSAGES = gql`
 {
   obtenerProductos {
-
           id
           nombre
           descripcion
@@ -24,7 +27,6 @@ const GET_MESSAGES = gql`
           nomenclaturaMedida
           urlImagen
           disponible
-          creado
       }
 }
 `
@@ -37,11 +39,15 @@ const GET_CATEGORIAS = gql`
 }
 `
 
-const Index = ({ productos, changeSort }) => {
+const Index = ({ productos, changeSort, triggerModalDetail }) => {
 
-  
   useEffect(() => {
   }, [changeSort])
+
+
+  const triggerModal = (infoProduct) => {
+    triggerModalDetail(infoProduct)
+  }
 
 
   return (
@@ -58,18 +64,19 @@ const Index = ({ productos, changeSort }) => {
       <ContainerMain>
         <Row style={{ marginTop: 30 }}>
           <Col>
-            <Filters productos={productos} />
+            <Filters productos={productos} flag={1} />
           </Col>
           <Col lg={9}>
             <Row>
               <TitleProducts title='Todos' numeroProductos={productos.length} />
             </Row>
             <Row >
-              <Products productos={productos} />
+              <Products productos={productos} triggerModal={triggerModal} />
             </Row>
           </Col>
         </Row>
       </ContainerMain>
+      <DetailProduct />
     </>
   )
 }
@@ -96,7 +103,13 @@ const mapStateToProps = (state) => ({
   changeSort: state.productos.changeSort
 })
 
-export default connect(mapStateToProps, null)(Index);
+const mapDispatchToProps = dispatch => {
+  return {
+    triggerModalDetail: (infoProduct) => dispatch(detalleProducto(infoProduct))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
 
 
 

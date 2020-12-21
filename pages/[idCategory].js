@@ -1,13 +1,19 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
+
 import { wrapper } from '../redux/store'
 import { connect } from 'react-redux';
+import { getCategorias, getCategoriaDetalle } from '../redux/CategoriasDuck'
+import { detalleProducto } from '../redux/productosDuck';
+
 import { gql, GraphQLClient } from 'graphql-request'
+import { Row, Col } from 'react-bootstrap'
+
+import Filters from '../components/index/Filters'
+import Products from '../components/index/Products'
 import ContainerMain from '../components/shared/ContainerMain'
 import TitleProducts from '../components/shared/TitleProducts'
-import { getCategorias, getCategoriaDetalle } from '../redux/CategoriasDuck'
-import Filters from '../components/index/Filters'
-import { Row, Col } from 'react-bootstrap'
-import Products from '../components/index/Products'
+import DetailProduct from '../components/shared/Detailproduct'
 
 const GET_CATEGORIAS = gql`
 {
@@ -25,17 +31,24 @@ query obtenerCategoriaDetalle($id: ID!) {
         producto{
             id
             nombre
+            descripcion
             nomenclaturaMedida
             urlImagen
             precio
             disponible
         }
-        creado
   }
 }
 `
 
-const Category = ({ categoria_productos, categoria_nombre }) => {
+const Category = ({ categoria_productos, categoria_nombre, changeSortCategory, triggerModalDetail }) => {
+
+    useEffect(() => {
+    }, [changeSortCategory])
+
+    const triggerModal = (infoProduct) => {
+        triggerModalDetail(infoProduct)
+    }
 
     return (
         <>
@@ -51,18 +64,19 @@ const Category = ({ categoria_productos, categoria_nombre }) => {
             <ContainerMain>
                 <Row style={{ marginTop: 30 }}>
                     <Col>
-                        <Filters productos={categoria_productos} />
+                        <Filters productos={categoria_productos} flag={2} />
                     </Col>
                     <Col lg={9}>
                         <Row>
                             <TitleProducts title={categoria_nombre} numeroProductos={categoria_productos.length} />
                         </Row>
                         <Row >
-                            <Products productos={categoria_productos} />
+                            <Products productos={categoria_productos} triggerModal={triggerModal} />
                         </Row>
                     </Col>
                 </Row>
             </ContainerMain>
+            <DetailProduct />
         </>
     );
 }
@@ -100,12 +114,19 @@ export const getStaticProps = wrapper.getStaticProps(
 )
 
 
+const mapDispatchToProps = dispatch => {
+    return {
+        triggerModalDetail: (infoProduct) => dispatch(detalleProducto(infoProduct))
+    }
+}
+
 const mapStateToProps = (state) => ({
     categoria_productos: state.categorias.categoriaProducts,
-    categoria_nombre: state.categorias.categoriaNombre
+    categoria_nombre: state.categorias.categoriaNombre,
+    changeSortCategory: state.categorias.changeSortCategory
 })
 
-export default connect(mapStateToProps, null)(Category);
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
 
 
 

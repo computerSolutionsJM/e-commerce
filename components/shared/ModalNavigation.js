@@ -77,9 +77,7 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-
     return {
-        //viewModalNavigation:  bindActionCreators(viewModalNavigation, dispatch)
         viewModalNavigation: (f) => dispatch(viewModalNavigation(f))
     }
 }

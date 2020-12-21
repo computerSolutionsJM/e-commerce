@@ -1,9 +1,11 @@
 
 import styles from '../../styles/index/products.module.css'
-import { Col } from 'react-bootstrap'
 import { FiShoppingCart, FiSearch } from "react-icons/fi"
 
-const Products = ({ productos }) => {
+import { Col } from 'react-bootstrap'
+
+const Products = ({ productos, triggerModal }) => {
+
 
     return (
         <>
@@ -21,7 +23,7 @@ const Products = ({ productos }) => {
                                     }
                                     <ul className={styles.product_links}>
                                         <li><span><i /><FiShoppingCart style={{ height: 20, width: 20 }} /></span></li>
-                                        <li><span><i /><FiSearch style={{ height: 20, width: 20 }} /></span></li>
+                                        <li onClick={() => { triggerModal(item) }} ><span><i /><FiSearch style={{ height: 20, width: 20 }} /></span></li>
                                     </ul>
                                 </div>
                                 <div className={styles.product_content}>
@@ -47,5 +49,5 @@ const Products = ({ productos }) => {
 }
 
 
+export default Products
 
-export default Products;
