@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 .detail_main {
       display: flex;
       padding: 6px 3px;
 }
-.detail_main_img {
-      display: flex;
-}
+
 .detail_main_img img {
       width: 100%;
 }
@@ -20,10 +19,12 @@
 .detail_main_text h4 {
       text-transform: capitalize;
       font-weight: bold;
+      font-family: 'Roboto', sans-serif;
 }
 
 .detail_main_text h5 {
       color: #dd2222;
+      font-family: 'Roboto', sans-serif;
 }
 
 .detail_main_text p {
@@ -33,6 +34,7 @@
       font-size: 14px;
       line-height: 1.3;
       margin-bottom: 0;
+      font-family: 'Roboto', sans-serif;
 }
 
 .close_modal {
@@ -53,6 +55,7 @@
       margin: 8px 8px 0;
       text-align: center;
       color: white;
+      font-family: 'Roboto', sans-serif;
 }
 
 .product_not_available {
@@ -63,6 +66,7 @@
       margin: 8px 8px 0;
       text-align: center;
       color: white;
+      font-family: 'Roboto', sans-serif;
 }
 
 .addCart_main {
@@ -77,7 +81,7 @@
       align-items: center;
       background: #f5f5f5;
       height: 40px;
-      padding: 0 8px;
+      padding: 0 10px;
 }
 
 .addCart_main_add_cart {
@@ -94,6 +98,7 @@
       border: none;
       color: white;
       line-height: 1;
+      font-family: 'Roboto', sans-serif;
 }
 
 .addCart_main_add_cart button:focus {
@@ -103,10 +108,13 @@
 .addCart_main_add_unity span {
       font-weight: bold;
       cursor: pointer;
+
 }
 
 .characters_product_main {
       display: flex;
+      border-top: 2px solid #f3f6fb;
+      border-bottom: 2px solid #f3f6fb;
 }
 
 .characters_product_main_title {
@@ -118,6 +126,7 @@
 .characters_product_main_title span {
       font-size: 13px;
       font-weight: bold;
+      font-family: 'Roboto', sans-serif;
 }
 
 .characters_product_main_specifics {
@@ -129,18 +138,21 @@
       font-size: 12px;
       font-weight: lighter;
       text-transform: capitalize;
+      font-family: 'Roboto', sans-serif;
 }
 
 /* responsive */
 @media (max-width: 425px) {
       .detail_main {
             flex-direction: column;
-      }
-      .detail_main_img {
-            justify-content: center;
+            padding: 8px 20px;
       }
       .characters_product_main {
-           margin: 10px 0;
+            margin: 10px 0;
+      }
+      .detail_main_img img {
+            max-height: 220px;
+            object-fit: cover;
       }
 }
 

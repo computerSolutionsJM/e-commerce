@@ -32,6 +32,7 @@ query obtenerCategoriaDetalle($id: ID!) {
             id
             nombre
             descripcion
+            unidadMedida
             nomenclaturaMedida
             urlImagen
             precio
