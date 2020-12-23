@@ -13,6 +13,18 @@ const ORDENAR_PRODUCTOS_CATEGORIA = "ORDENAR_PRODUCTOS_CATEGORIA"
 //reducer
 export default function CategoriasReducer(state = dataInicial, action) {
       switch (action.type) {
+            case "__NEXT_REDUX_WRAPPER_HYDRATE__": {
+                  const data = action.payload
+                  if (data) {
+                        return {
+                              ...state,
+                              categorias: data.categorias.categorias,
+                              categoriaNombre: data.categorias.categoriaNombre,
+                              categoriaProducts: data.categorias.categoriaProducts
+                        }
+                  }
+            }
+            
             case GET_CATEGORIAS:
                   return { ...state, categorias: action.payload }
 

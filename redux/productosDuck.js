@@ -3,7 +3,7 @@ const dataInicial = {
       productos: [],
       changeSort: false,
       showModalDetail: false,
-      detalleProducto: { }
+      detalleProducto: {},
 }
 
 const OBTENER_PRODUCTOS = "OBTENER_PRODUCTOS"
@@ -13,6 +13,15 @@ const VER_MODAL_DETALLES = "VER_MODAL_DETALLES"
 //reducer
 export default function productosReducer(state = dataInicial, action) {
       switch (action.type) {
+            case "__NEXT_REDUX_WRAPPER_HYDRATE__": {
+                  const data = action.payload
+                  if (data) {
+                        return {
+                              ...state,
+                              productos: data.productos.productos,
+                        }
+                  }
+            }
             case OBTENER_PRODUCTOS:
                   return { ...state, productos: action.payload }
 
@@ -32,7 +41,7 @@ export const obtenerProductos_ = productos => async (dispatch, getState) => {
       try {
             dispatch({
                   type: OBTENER_PRODUCTOS,
-                  payload: productos
+                  payload: productos,
             })
       } catch (error) {
             console.log(error)
@@ -43,18 +52,18 @@ export const ordenarProductos = productos => async (dispatch, getState) => {
       try {
             dispatch({
                   type: ORDENAR_PRODUCTOS,
-                  payload: { changeSort: !getState().productos.changeSort, productos }
+                  payload: { changeSort: !getState().productos.changeSort, productos },
             })
       } catch (error) {
             console.log(error)
       }
 }
 
-export const detalleProducto = (infoProducto) => async (dispatch, getState) => {
+export const detalleProducto = infoProducto => async (dispatch, getState) => {
       try {
             dispatch({
                   type: VER_MODAL_DETALLES,
-                  payload: { showModalDetail: !getState().productos.showModalDetail, infoProducto}
+                  payload: { showModalDetail: !getState().productos.showModalDetail, infoProducto },
             })
       } catch (error) {
             console.log(error)

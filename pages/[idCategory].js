@@ -14,6 +14,7 @@ import Filters from "../components/index/Filters"
 import Products from "../components/index/Products"
 import ContainerMain from "../components/shared/ContainerMain"
 import TitleProducts from "../components/shared/TitleProducts"
+import { agregarItemPedido } from "../redux/PedidoDuck"
 
 const GET_CATEGORIAS = gql`
       {
@@ -42,16 +43,25 @@ const GET_CATEGORY_DETALLE = gql`
       }
 `
 
-const Category = ({ categoria_productos, categoria_nombre, changeSortCategory, triggerModalDetail }) => {
+const Category = ({ categoria_productos, categoria_nombre, changeSortCategory, triggerModalDetail, addItemOrder }) => {
       useEffect(() => {}, [changeSortCategory])
 
       const triggerModal = infoProduct => {
             triggerModalDetail(infoProduct)
       }
 
-      const addCart = () => {
-            toast.success("Producto Agregado!")
-      }
+      const addCart = async item => {
+        let itemSend = {
+              idProducto: item.id,
+              nombreProducto: item.nombre,
+              cantidad: 1,
+              medida: item.nomenclaturaMedida,
+              precioUnitario: item.precio,
+              precioTotal: item.precio,
+        }
+        addItemOrder(itemSend)
+        toast.success("Producto Agregado!")
+  }
 
       return (
             <>
@@ -113,6 +123,7 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
 const mapDispatchToProps = dispatch => {
       return {
             triggerModalDetail: infoProduct => dispatch(detalleProducto(infoProduct)),
+            addItemOrder: item => dispatch(agregarItemPedido(item)),
       }
 }
 
