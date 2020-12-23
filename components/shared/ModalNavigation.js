@@ -37,13 +37,10 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
                     <nav>
                         <ul className={styles.ul_nav}>
                             <li onClick={() => route1('/')}>
-                                <span style={router.pathname === "/" ? { color: '#7fad39' } : { color: 'black' }}>Home</span>
+                                <span style={router.pathname === "/" ? { color: '#7fad39' } : { color: 'black' }}>Inicio</span>
                             </li>
-                            <li onClick={() => route1('/shop')}>
-                                <span style={router.pathname === "/shop" ? { color: '#7fad39' } : { color: 'black' }}>Shop</span>
-                            </li>
-                            <li>
-                                <span>Page</span>
+                            <li onClick={() => route1('/shoppingCart')}>
+                                <span style={router.pathname === "/shoppingCart" ? { color: '#7fad39' } : { color: 'black' }}>Carrito</span>
                             </li>
                             <li>
                                 <span>Contac</span>

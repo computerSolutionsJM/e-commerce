@@ -1,6 +1,8 @@
 import { useState } from "react"
+
 import { connect } from "react-redux"
 import { detalleProducto } from "../../redux/productosDuck"
+import { agregarItemPedido } from "../../redux/PedidoDuck"
 
 import { Modal } from "react-bootstrap"
 import { RiCloseCircleFill } from "react-icons/ri"
@@ -8,7 +10,8 @@ import toast, { Toaster } from "react-hot-toast"
 
 import styles from "../../styles/shared/DetailProduct.module.css"
 
-const DetailProduct = ({ showModalDetail, triggerModalDetail, detalleProducto }) => {
+
+const DetailProduct = ({ showModalDetail, triggerModalDetail, detalleProducto, addItemOrderDetail }) => {
       const [quantity, setQuantity] = useState(1)
 
       const triggerModal = () => {
@@ -16,6 +19,16 @@ const DetailProduct = ({ showModalDetail, triggerModalDetail, detalleProducto })
       }
 
       const addCart = () => {
+            let itemSend = {
+                  idProducto: detalleProducto.id,
+                  nombreProducto: detalleProducto.nombre,
+                  cantidad: quantity,
+                  medida: detalleProducto.nomenclaturaMedida,
+                  urlImagen:detalleProducto.urlImagen,
+                  precioUnitario: detalleProducto.precio,
+                  precioTotal: detalleProducto.precio * quantity,
+            }
+            addItemOrderDetail(itemSend)
             triggerModalDetail()
             setQuantity(1)
             toast.success("Producto Agregado!")
@@ -75,6 +88,7 @@ const DetailProduct = ({ showModalDetail, triggerModalDetail, detalleProducto })
 const mapDispatchToProps = dispatch => {
       return {
             triggerModalDetail: () => dispatch(detalleProducto()),
+            addItemOrderDetail: item => dispatch(agregarItemPedido(item)),
       }
 }
 

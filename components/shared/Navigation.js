@@ -21,26 +21,19 @@ const Navigation = ({ viewModalNavigation }) => {
                               <ul>
                                     <li>
                                           <Link href="/">
-                                                <a style={router.pathname === "/" ? { color: "#7fad39" } : { color: "black" }}>HOME</a>
-                                          </Link>
-                                    </li>
-                                    <li>
-                                          <Link href="/shop">
-                                                <a style={router.pathname === "/shop" ? { color: "#7fad39" } : { color: "black" }}>SHOP</a>
-                                          </Link>
-                                    </li>
-                                    <li>
-                                          <Link href="/page">
-                                                <a style={router.pathname === "/page" ? { color: "#7fad39" } : { color: "black" }} href="/page">
-                                                      PAGE
-                                                </a>
+                                                <a style={router.pathname === "/" ? { color: "#7fad39" } : { color: "black" }}>INICIO</a>
                                           </Link>
                                     </li>
                                     <li>
                                           <Link href="/contact">
-                                                <a style={router.pathname === "/contact" ? { color: "#7fad39" } : { color: "black" }} href="/contact">
-                                                      CONTACT
+                                                <a style={router.pathname === "/contact" ? { color: "#7fad39" } : { color: "black" }}>
+                                                      CONTACTO
                                                 </a>
+                                          </Link>
+                                    </li>
+                                    <li>
+                                          <Link href="/shoppingCart">
+                                                <a style={router.pathname === "/shoppingCart" ? { color: "#7fad39" } : { color: "black" }}>CARRITO</a>
                                           </Link>
                                     </li>
                               </ul>
@@ -64,7 +57,7 @@ const Navigation = ({ viewModalNavigation }) => {
 
 const mapDispatchToProps = dispatch => {
       return {
-            viewModalNavigation: () => dispatch(viewModalNavigation("567"))
+            viewModalNavigation: () => dispatch(viewModalNavigation("567")),
             //viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
       }
 }
