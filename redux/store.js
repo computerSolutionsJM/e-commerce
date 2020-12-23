@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import productosReducer from './productosDuck'
 import modalNavigationReducer from './ModalNavigationDuck'
 import CategoriasReducer from './CategoriasDuck'
+import pedidoReducer from './PedidoDuck'
 
 const bindMiddleware = (middleware) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +17,8 @@ const bindMiddleware = (middleware) => {
   const combinedReducer = combineReducers({
     productos: productosReducer,
     modalNavigation : modalNavigationReducer,
-    categorias: CategoriasReducer
+    categorias: CategoriasReducer,
+    pedidos: pedidoReducer
   })
 
 

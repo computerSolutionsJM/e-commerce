@@ -1,10 +1,12 @@
-import styles from "../../styles/shared/HeaderCart.module.css"
+import { connect } from "react-redux"
+
 import { Badge } from "react-bootstrap"
 import { FiShoppingCart } from "react-icons/fi"
 import { BsHeartFill } from "react-icons/bs"
 
+import styles from "../../styles/shared/HeaderCart.module.css"
 
-const HeaderCart = () => {
+const HeaderCart = ({ cantidadProductos }) => {
       return (
             <div className={styles.headerCart_main}>
                   <ul>
@@ -24,7 +26,7 @@ const HeaderCart = () => {
                               </div>
                               <div style={{ display: "flex", alignItems: "flex-start" }}>
                                     <Badge pill={true} variant="success" style={{ fontSize: 9, background: "#7fad39" }}>
-                                          3
+                                          {cantidadProductos}
                                     </Badge>
                               </div>
                         </li>
@@ -36,4 +38,8 @@ const HeaderCart = () => {
       )
 }
 
-export default HeaderCart
+const mapStateToProps = state => ({
+      cantidadProductos: state.pedidos.itemsPedido.length,
+})
+
+export default connect(mapStateToProps, null)(HeaderCart)
