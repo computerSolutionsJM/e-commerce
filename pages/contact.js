@@ -5,11 +5,11 @@ import { connect } from "react-redux"
 import { getCategorias } from "../redux/CategoriasDuck"
 
 import { gql, GraphQLClient } from "graphql-request"
-import { Row } from "react-bootstrap"
+import { Row, Col, Card } from "react-bootstrap"
 
 import ContainerMain from "../components/shared/ContainerMain"
 import BannerMain from "../components/shoppingCart/BannerMain"
-import ItemsPedido from "../components/shoppingCart/ItemsPedido"
+
 
 const GET_CATEGORIAS = gql`
       {
@@ -20,11 +20,11 @@ const GET_CATEGORIAS = gql`
       }
 `
 
-const ShoppingCart = () => {
+const Contact = () => {
       return (
             <>
                   <Head>
-                        <title>Carrito - Ogani</title>
+                        <title>Contacto - Ogani</title>
                         <meta charSet="UTF-8" />
                         <meta name="description" content="Ogani Template" />
                         <meta name="keywords" content="Ogani, unica, creative, html" />
@@ -34,15 +34,34 @@ const ShoppingCart = () => {
                   </Head>
                   <ContainerMain>
                         <Row style={{ marginTop: 30, marginBottom: 30 }}>
-                              <BannerMain title="Carrito de compras" title_="Carrito" />
+                          <BannerMain title='Contactanos' title_='Contacto'/>
                         </Row>
                         <Row style={{ marginTop: 10 }}>
-                              <ItemsPedido />
+                              <Col>1 of 2</Col>
+                              <Col lg={9}>
+                                    <Row>
+                                          <Col md={6} lg={4}>
+                                                <Card>
+                                                      <Card.Img variant="top" />
+                                                      <Card.Body>
+                                                            <Card.Title>Card title</Card.Title>
+                                                            <Card.Text>
+                                                                  This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                                            </Card.Text>
+                                                      </Card.Body>
+                                                      <Card.Footer>
+                                                            <small className="text-muted">Last updated 3 mins ago</small>
+                                                      </Card.Footer>
+                                                </Card>
+                                          </Col>
+                                    </Row>
+                              </Col>
                         </Row>
                   </ContainerMain>
             </>
       )
 }
+
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) => {
       const client = new GraphQLClient(process.env.ENV_LOCAL_VARIABLE, { headers: {} })
@@ -54,4 +73,6 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
       }
 })
 
-export default connect(null, null)(ShoppingCart)
+
+export default connect(null, null)(Contact)
+

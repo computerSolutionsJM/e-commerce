@@ -1,10 +1,14 @@
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router'
+
 import { viewModalNavigation } from '../../redux/ModalNavigationDuck';
-import HeaderCart from './HeaderCart';
-import styles from '../../styles/shared/ModalNavigation.module.css'
 import { HiMail } from "react-icons/hi"
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa"
+
+
+import HeaderCart from './HeaderCart';
+import styles from '../../styles/shared/ModalNavigation.module.css'
+
 
 
 

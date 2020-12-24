@@ -1,3 +1,19 @@
 .banner_main {
-    background: red;
+    display: flex;
+    flex-direction: column;
+    background-image: url('/breadcrumb.jpg');
+    padding: 20px 0;
+    color: #ffffff;
+   
+}
+.banner_main_carrito{
+    font-weight: 700;
+    font-size: 46px;
+    text-align: center;
+    line-height: 1;
+}
+
+.banner_main_ogani{
+    margin-top: 5px;
+    text-align: center;
 }

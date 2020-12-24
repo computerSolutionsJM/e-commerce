@@ -16,7 +16,7 @@ import TitleProducts from "../components/shared/TitleProducts"
 import Filters from "../components/index/Filters"
 import Products from "../components/index/Products"
 
-const GET_MESSAGES = gql`
+const GET_PRODUCTOS = gql`
       {
             obtenerProductos {
                   id
@@ -94,7 +94,7 @@ const Index = ({ productos, changeSort, triggerModalDetail, addItemOrder }) => {
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) => {
       const client = new GraphQLClient(process.env.ENV_LOCAL_VARIABLE, { headers: {} })
-      const { obtenerProductos } = await client.request(GET_MESSAGES)
+      const { obtenerProductos } = await client.request(GET_PRODUCTOS)
       const { obtenerCategorias } = await client.request(GET_CATEGORIAS)
       store.dispatch(getCategorias(obtenerCategorias))
       store.dispatch(obtenerProductos_(obtenerProductos))

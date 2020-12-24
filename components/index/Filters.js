@@ -12,8 +12,8 @@ import styles from '../../styles/index/filters.module.css'
 
 const Filters = ({ productos, flag , ordenarProductos, ordenarProductosCategoria }) => {
 
-    const [open, setOpen] = useState(true);
-    const [open_1, setOpen_1] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [open_1, setOpen_1] = useState(false);
 
 
     const sortProductsMenorMayor = () => {

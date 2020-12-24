@@ -5,11 +5,13 @@ import { Col  } from "react-bootstrap"
 import styles from '../../styles/shoppingCart/ShoppingCart.module.css'
 
 
-const BannerMain = () => {
+const BannerMain = ({title, title_}) => {
       return (
             <Col >
-                  <h1>Carrito de Compras</h1>
-                  <h6>Inicio-Carrito de Compras</h6>
+                  <div className={styles.banner_main}>
+                        <span className={styles.banner_main_carrito}>{title}</span>
+                        <span className={styles.banner_main_ogani}>{title_} - Ogani</span>
+                  </div>
             </Col>
       )
 }

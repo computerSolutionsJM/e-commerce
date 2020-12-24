@@ -8,3 +8,7 @@
 .headerCart_main ul li {
    margin-right: 15px;
 }
+
+.headerCart_main a{
+   color: black;
+}

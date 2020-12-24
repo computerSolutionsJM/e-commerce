@@ -1,10 +1,12 @@
-import styles from "../../styles/shared/Navsearch.module.css"
-import { Accordion } from "react-bootstrap"
 import { connect } from "react-redux"
 import Link from "next/link"
 
+
+import { Accordion } from "react-bootstrap"
 import { FaPhone, FaBars } from "react-icons/fa"
 import { BsChevronDown } from 'react-icons/bs'
+
+import styles from "../../styles/shared/Navsearch.module.css"
 
 const NavSearch = ({ categorias }) => {
       return (
