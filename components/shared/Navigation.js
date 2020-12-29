@@ -58,7 +58,6 @@ const Navigation = ({ viewModalNavigation }) => {
 const mapDispatchToProps = dispatch => {
       return {
             viewModalNavigation: () => dispatch(viewModalNavigation("567")),
-            //viewModalNavigation: bindActionCreators(viewModalNavigation, dispatch)
       }
 }
 

@@ -3,8 +3,13 @@ import { connect } from "react-redux"
 import { Col, Table } from "react-bootstrap"
 import { MdDelete } from "react-icons/md"
 
-const ItemsPedido = ({ productosPedido }) => {
+import CountProducts from "../shared/CountProducts"
+import { eliminarItemPedido } from "../../redux/PedidoDuck"
 
+const ItemsPedido = ({ productosPedido, removeItem }) => {
+      const removeItem_ = id => {
+            removeItem(id)
+      }
 
       return (
             <Col>
@@ -32,14 +37,16 @@ const ItemsPedido = ({ productosPedido }) => {
                                                       <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}>{item.precioUnitario}</div>
                                                 </td>
                                                 <td>
-                                                      <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}> {item.cantidad}</div>
+                                                      <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                                            <CountProducts index={index} cantidad={item.cantidad} precioUnitario={item.precioUnitario} />
+                                                      </div>
                                                 </td>
                                                 <td>
                                                       <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}> {item.precioTotal}</div>
                                                 </td>
                                                 <td>
                                                       <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                                            <MdDelete style={{ width: 20, height: 20, cursor: "pointer" }} color="red" />
+                                                            <MdDelete onClick={() => removeItem_(item.idProducto)} style={{ width: 20, height: 20, cursor: "pointer" }} color="red" />
                                                       </div>
                                                 </td>
                                           </tr>
@@ -55,4 +62,10 @@ const mapStateToProps = state => ({
       productosPedido: state.pedidos.itemsPedido,
 })
 
-export default connect(mapStateToProps, null)(ItemsPedido)
+const mapDispatchToProps = dispatch => {
+      return {
+            removeItem: idProducto => dispatch(eliminarItemPedido(idProducto)),
+      }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsPedido)

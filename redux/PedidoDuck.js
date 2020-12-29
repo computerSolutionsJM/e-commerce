@@ -4,28 +4,29 @@ const dataInicial = {
 }
 
 const AGREGAR_ITEM_PEDIDO = "AGREGAR_ITEM_PEDIDO"
-const AGREGAR_ITEM_PEDIDO_DETAIL = "AGREGAR_ITEM_PEDIDO_DETAIL"
+const AGREGAR_ITEM_PEDIDO_CANTIDAD = "AGREGAR_ITEM_PEDIDO_CANTIDAD"
+const ELIMINAR_ITEM_PEDIDO = "ELIMINAR_ITEM_PEDIDO"
 
 //reducer
 export default function pedidoReducer(state = dataInicial, action) {
       switch (action.type) {
             case AGREGAR_ITEM_PEDIDO:
+
                   return { ...state, itemsPedido: [...state.itemsPedido, action.payload] }
 
-            case AGREGAR_ITEM_PEDIDO_DETAIL:
+            case AGREGAR_ITEM_PEDIDO_CANTIDAD:
+
+                  const { index, cantidad, precioTotal } = action.payload
+                  let itemsPedido = [...state.itemsPedido]
+                  itemsPedido[index] = { ...itemsPedido[index], cantidad, precioTotal }
+
                   return {
                         ...state,
-                        itemsPedido: state.itemsPedido.map((item, index) => {
-                              if (index === action.payload.index) {
-                                    return {
-                                          ...item,
-                                          cantidad: action.payload.cantidad,
-                                          precioTotal: action.payload.precioTotal
-                                    }
-                              }
-                              return item
-                        }),
+                        itemsPedido,
                   }
+
+            case ELIMINAR_ITEM_PEDIDO:
+                  return { ...state, itemsPedido: state.itemsPedido.filter(item => item.idProducto !== action.payload) }
 
             default:
                   return state
@@ -47,11 +48,33 @@ export const agregarItemPedido = itemPedido => async (dispatch, getState) => {
       } else {
             try {
                   dispatch({
-                        type: AGREGAR_ITEM_PEDIDO_DETAIL,
+                        type: AGREGAR_ITEM_PEDIDO_CANTIDAD,
                         payload: { index: indexItem, cantidad: itemPedido.cantidad, precioTotal: itemPedido.precioTotal },
                   })
             } catch (error) {
                   console.log(error)
             }
+      }
+}
+
+export const agregarCantidadProductoPedido = datosProducto => async (dispatch, getState) => {
+      try {
+            dispatch({
+                  type: AGREGAR_ITEM_PEDIDO_CANTIDAD,
+                  payload: { index: datosProducto.index, cantidad: datosProducto.cantidad, precioTotal: datosProducto.precioTotal },
+            })
+      } catch (error) {
+            console.log(error)
+      }
+}
+
+export const eliminarItemPedido = idItem => async (dispatch, getState) => {
+      try {
+            dispatch({
+                  type: ELIMINAR_ITEM_PEDIDO,
+                  payload: idItem,
+            })
+      } catch (error) {
+            console.log(error)
       }
 }
