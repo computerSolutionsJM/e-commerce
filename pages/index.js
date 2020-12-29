@@ -40,7 +40,6 @@ const GET_CATEGORIAS = gql`
 `
 
 const Index = ({ productos, changeSort, triggerModalDetail, addItemOrder }) => {
-    
       useEffect(() => {}, [changeSort])
 
       const triggerModal = infoProduct => {
@@ -53,7 +52,7 @@ const Index = ({ productos, changeSort, triggerModalDetail, addItemOrder }) => {
                   nombreProducto: item.nombre,
                   cantidad: 1,
                   medida: item.nomenclaturaMedida,
-                  urlImagen:item.urlImagen,
+                  urlImagen: item.urlImagen,
                   precioUnitario: item.precio,
                   precioTotal: item.precio,
             }

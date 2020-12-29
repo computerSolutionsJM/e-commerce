@@ -2,13 +2,39 @@ import { connect } from "react-redux"
 
 import { Col, Table } from "react-bootstrap"
 import { MdDelete } from "react-icons/md"
+import { FcDeleteDatabase } from "react-icons/fc"
+import toast, { Toaster } from "react-hot-toast"
 
 import CountProducts from "../shared/CountProducts"
 import { eliminarItemPedido } from "../../redux/PedidoDuck"
 
 const ItemsPedido = ({ productosPedido, removeItem }) => {
       const removeItem_ = id => {
-            removeItem(id)
+            toast(
+                  t => (
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                              <span>
+                                    ¡Seguro de <b style={{ color: "#7fad39" }}>Eliminar</b>!
+                              </span>
+                              <div style={{ display: "flex", justifyContent: "space-around", marginTop: 3 }}>
+                                    <button style={{ border: "none", background: "#ffffff" }} onClick={() => succesRemoveItem(id, t.id)}>
+                                          Si
+                                    </button>
+                                    <button style={{ border: "none", background: "#ffffff" }} onClick={() => toast.dismiss(t.id)}>
+                                          No
+                                    </button>
+                              </div>
+                        </div>
+                  ),
+                  {
+                        icon: <FcDeleteDatabase style={{ width: 50, height: 50 }} />,
+                  }
+            )
+      }
+
+      const succesRemoveItem = (idProduct, idToast) => {
+            removeItem(idProduct)
+            toast.dismiss(idToast)
       }
 
       return (
@@ -54,6 +80,7 @@ const ItemsPedido = ({ productosPedido, removeItem }) => {
                               })}
                         </tbody>
                   </Table>
+                  <Toaster toastOptions={{ duration: 5000, style: { border: "1px solid #7fad39", padding: "16px 25px" } }} />
             </Col>
       )
 }
