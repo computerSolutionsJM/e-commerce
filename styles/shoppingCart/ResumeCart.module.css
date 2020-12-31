@@ -1,0 +1,124 @@
+.button_actualizar_cart {
+      display: flex;
+      justify-content: flex-end;
+}
+
+.button_actualizar_cart button {
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 12px 15px;
+      color: #6f6f6f;
+      background: #f5f5ff;
+}
+
+.button_continue_cart button {
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 12px 8px;
+      color: #6f6f6f;
+      background: #f5f5ff;
+}
+
+.button_actualizar_cart button:focus {
+      outline: none;
+}
+
+.button_continue_cart button:focus {
+      outline: none;
+}
+
+.main_total_cart {
+      display: flex;
+      width: 100%;
+      margin-top: 20px;
+}
+
+.main_total_cart {
+      display: flex;
+      width: 100%;
+      margin-top: 30px;
+}
+
+.main_total_cart h5 {
+      font-weight: bold;
+}
+
+.cupons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+}
+
+.cupons input {
+      width: 55%;
+      border: 1px solid #cccccc;
+      height: 50px;
+      text-align: center;
+}
+
+.cupons input:focus {
+      outline: none;
+}
+
+.cupons button {
+      width: 40%;
+      background: #6f6f6f;
+      border: none;
+      color: #ffffff;
+      font-weight: bold;
+      line-height: 1;
+}
+
+.cupons button:focus {
+      outline: none;
+}
+
+.text_total_cart {
+      background: #f5f5f5;
+      padding: 20px;
+}
+.text_total_cart span{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.text_total_cart button{
+    width: 100%;
+    background: #7fad39;
+    border: none;
+    color: #ffffff;
+    font-weight: bold;
+    height: 50px;    
+}
+.text_total_cart button:focus{
+    outline: none;
+}
+
+.subtotal{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+    padding: 20px 0;
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+      .main_total_cart {
+            flex-direction: column;
+      }
+      .text_total_cart {
+            margin-top: 10px;
+      }
+}
+
+/* desktop */
+@media (min-width: 992px) {
+}

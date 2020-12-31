@@ -9,8 +9,7 @@ import { Row } from "react-bootstrap"
 
 import ContainerMain from "../components/shared/ContainerMain"
 import BannerMain from "../components/shoppingCart/BannerMain"
-import ItemsPedido from "../components/shoppingCart/ItemsPedido"
-import Resumecart from "../components/shoppingCart/ResumeCart"
+import FormOrder from "../components/order/FormOrder"
 
 const GET_CATEGORIAS = gql`
       {
@@ -21,11 +20,11 @@ const GET_CATEGORIAS = gql`
       }
 `
 
-const ShoppingCart = () => {
+const Order = () => {
       return (
             <>
                   <Head>
-                        <title>Carrito - Ogani</title>
+                        <title>Ordenes - Ogani</title>
                         <meta charSet="UTF-8" />
                         <meta name="description" content="Ogani Template" />
                         <meta name="keywords" content="Ogani, unica, creative, html" />
@@ -35,13 +34,10 @@ const ShoppingCart = () => {
                   </Head>
                   <ContainerMain>
                         <Row style={{ marginTop: 30, marginBottom: 30 }}>
-                              <BannerMain title="Carrito de compras" title_="Carrito" />
+                              <BannerMain title="Orden de Compra" title_="Ordenes" />
                         </Row>
                         <Row style={{ marginTop: 10 }}>
-                              <ItemsPedido />
-                        </Row>
-                        <Row style={{ marginTop: 10 }}>
-                              <Resumecart />
+                              <FormOrder />
                         </Row>
                   </ContainerMain>
             </>
@@ -58,4 +54,4 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
       }
 })
 
-export default connect(null, null)(ShoppingCart)
+export default connect(null, null)(Order)
