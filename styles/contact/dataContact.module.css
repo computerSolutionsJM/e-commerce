@@ -1,0 +1,30 @@
+.main_data_contact {
+      display: flex;
+      justify-content: space-between;
+}
+
+.main_data_contact_1 {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      padding: 15px 0;
+}
+.main_data_contact_1 h3 {
+      font-weight: bold;
+      margin-top: 12px;
+}
+.main_data_contact_1 span {
+      color: #666666;
+}
+
+/* desktop */
+@media (min-width: 992px) {
+}
+
+/* responsive */
+@media (max-width: 992px) {
+      .main_data_contact {
+            flex-direction: column;
+      }
+}

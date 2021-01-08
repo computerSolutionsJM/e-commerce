@@ -129,7 +129,7 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                               <ul className={styles.list_products} style={productsOrder.length > 5 ? { overflowY: "scroll" } : null}>
                                     {productsOrder.map((item, index) => {
                                           return (
-                                                <li>
+                                                <li key={index}>
                                                       <span>{item.nombreProducto}</span> <span style={{ fontWeight: "bold" }}>${item.precioUnitario}</span>
                                                 </li>
                                           )
