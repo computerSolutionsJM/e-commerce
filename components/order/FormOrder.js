@@ -28,7 +28,7 @@ const CREAR_PEDIDO = gql`
 
 const client = new GraphQLClient(process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE, { headers: {} })
 
-const FormOrder = ({ productsOrder, clearItemsOrder }) => {
+const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
       const [load, setLoad] = useState(false)
 
       const formik = useFormik({
@@ -115,14 +115,32 @@ const FormOrder = ({ productsOrder, clearItemsOrder }) => {
                                           {formik.touched.telefono && formik.errors.telefono ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.telefono}</label> : null}
                                     </div>
                                     <div className={styles.input_all}>
-                                          <button type="submit" >{load ? <Spinner size="sm" animation="border" color='#7fad39'/> : "Enviar"}</button>
+                                          <button type="submit">{load ? <Spinner size="sm" animation="border" /> : "Solicitar Domicilio"}</button>
                                     </div>
                               </form>
                         </div>
                   </Col>
                   <Col xs={12} lg={4}>
                         <div className={styles.main_resume_order}>
-                              <span></span>
+                              <h4>Tu Orden</h4>
+                              <div className={styles.checkout__order__products}>
+                                    <span>Productos</span> <span>Total</span>
+                              </div>
+                              <ul className={styles.list_products} style={productsOrder.length > 5 ? { overflowY: "scroll" } : null}>
+                                    {productsOrder.map((item, index) => {
+                                          return (
+                                                <li>
+                                                      <span>{item.nombreProducto}</span> <span style={{ fontWeight: "bold" }}>${item.precioUnitario}</span>
+                                                </li>
+                                          )
+                                    })}
+                              </ul>
+                              <div className={styles.checkout__order__products_sub}>
+                                    <span>Subtotal</span> <span>${priceTotal}</span>
+                              </div>
+                              <div className={styles.checkout__order__products_sub}>
+                                    <span>Total</span> <span style={{ color: "red" }}>${priceTotal}</span>
+                              </div>
                         </div>
                   </Col>
             </>
@@ -146,6 +164,7 @@ const mapStateToProps = state => ({
                   precioTotal: item.precioTotal,
             }
       }),
+      priceTotal: state.pedidos.itemsPedido.reduce((sum, { precioTotal }) => sum + precioTotal, 0),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormOrder)

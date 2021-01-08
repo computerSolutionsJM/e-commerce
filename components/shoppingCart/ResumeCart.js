@@ -51,7 +51,7 @@ const Resumecart = ({ precioTotalPedido }) => {
                                           <span style={{ fontSize: 14 }}>Total</span>
                                           <span style={{ fontSize: 15, color: "red" }}>${precioTotalPedido}</span>
                                     </div>
-                                    <button onClick={routeOrders}>Solicitar Domicilio</button>
+                                    <button onClick={routeOrders}>Continuar</button>
                               </div>
                         </Col>
                   </div>
