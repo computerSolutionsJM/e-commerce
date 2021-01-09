@@ -46,8 +46,8 @@ const ModalNavigation = ({ showModal, viewModalNavigation }) => {
                             <li onClick={() => route1('/shoppingCart')}>
                                 <span style={router.pathname === "/shoppingCart" ? { color: '#7fad39' } : { color: 'black' }}>Carrito</span>
                             </li>
-                            <li>
-                                <span>Contac</span>
+                            <li onClick={() => route1('/contact')}>
+                                <span style={router.pathname === "/contact" ? { color: '#7fad39' } : { color: 'black' }}>Contacto</span>
                             </li>
                         </ul>
                     </nav>

@@ -10,6 +10,7 @@ import { Row, Col, Card } from "react-bootstrap"
 import ContainerMain from "../components/shared/ContainerMain"
 import BannerMain from "../components/shoppingCart/BannerMain"
 import DataContac from "../components/contact/dataContac"
+import FormContact from "../components/contact/FormContact"
 
 const GET_CATEGORIAS = gql`
       {
@@ -38,6 +39,9 @@ const Contact = () => {
                         </Row>
                         <Row style={{ marginTop: 10 }}>
                               <DataContac />
+                        </Row>
+                        <Row style={{ marginTop: 40 }}>
+                              <FormContact />
                         </Row>
                   </ContainerMain>
             </>

@@ -2,13 +2,14 @@ import { useState } from "react"
 
 import { useFormik } from "formik"
 import * as Yup from "yup"
-import { Col, Spinner } from "react-bootstrap"
+import { Col, Spinner, Alert } from "react-bootstrap"
 import { GraphQLClient, gql } from "graphql-request"
 
 import { connect } from "react-redux"
 import { limpiarItemsPedido } from "../../redux/PedidoDuck"
 
 import styles from "../../styles/order/FormOrder.module.css"
+import ModalConfirm from "./ModalConfirm"
 
 const CREAR_PEDIDO = gql`
       mutation crearPedido($input: PedidoInput) {
@@ -30,6 +31,7 @@ const client = new GraphQLClient(process.env.NEXT_PUBLIC_ENV_LOCAL_VARIABLE, { h
 
 const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
       const [load, setLoad] = useState(false)
+      const [show, setShow] = useState(false)
 
       const formik = useFormik({
             initialValues: {
@@ -40,10 +42,10 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                   telefono: "",
             },
             validationSchema: Yup.object({
-                  nombre: Yup.string().required("El nombre es obligatorio"),
-                  apellido: Yup.string().required("El apellido es obligatorio"),
-                  direccion: Yup.string().required("La dirección es obligatorio"),
-                  correo: Yup.string().email("Correo incorrecto").required("El correo es obligatorio"),
+                  nombre: Yup.string().required("El nombre es requerido"),
+                  apellido: Yup.string().required("El apellido es requerido"),
+                  direccion: Yup.string().required("La dirección es requerida"),
+                  correo: Yup.string().email("Correo incorrecto").required("El correo es requerido"),
                   telefono: Yup.string()
                         .required("El telefono es requerido")
                         .matches(/^[0-9]+$/, "Solo Numeros")
@@ -68,9 +70,11 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                         const data = await client.request(CREAR_PEDIDO, variables)
                         clearItemsOrder()
                         setLoad(false)
+                        setShow(true)
                   } catch (error) {
                         console.log("error", error.response.errors[0].message)
                         setLoad(false)
+                        setShow(true)
                   }
             },
       })
@@ -90,29 +94,49 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                                           <div className={styles.name_last}>
                                                 <label>Nombres</label>
                                                 <input id="nombre" type="text" value={formik.values.nombre} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                                                {formik.touched.nombre && formik.errors.nombre ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.nombre}</label> : null}
+                                                {formik.touched.nombre && formik.errors.nombre ? (
+                                                      <Alert variant="danger">
+                                                            <span style={{ fontWeight: "bold" }}>{formik.errors.nombre}</span>
+                                                      </Alert>
+                                                ) : null}
                                           </div>
                                           <div className={styles.name_last}>
                                                 <label>Apellidos</label>
                                                 <input id="apellido" type="text" value={formik.values.apellido} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                                                {formik.touched.apellido && formik.errors.apellido ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.apellido}</label> : null}
+                                                {formik.touched.apellido && formik.errors.apellido ? (
+                                                      <Alert variant="danger">
+                                                            <span style={{ fontWeight: "bold" }}>{formik.errors.apellido}</span>
+                                                      </Alert>
+                                                ) : null}
                                           </div>
                                     </div>
 
                                     <div className={styles.input_all}>
                                           <label>Direccion</label>
                                           <input id="direccion" type="text" value={formik.values.direccion} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                                          {formik.touched.direccion && formik.errors.direccion ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.direccion}</label> : null}
+                                          {formik.touched.direccion && formik.errors.direccion ? (
+                                                <Alert variant="danger">
+                                                      <span style={{ fontWeight: "bold" }}>{formik.errors.direccion}</span>
+                                                </Alert>
+                                          ) : null}
                                     </div>
                                     <div className={styles.input_all}>
                                           <label>Correo Electronico</label>
                                           <input id="correo" type="text" value={formik.values.correo} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                                          {formik.touched.correo && formik.errors.correo ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.correo}</label> : null}
+                                          {formik.touched.correo && formik.errors.correo ? (
+                                                <Alert variant="danger">
+                                                      <span style={{ fontWeight: "bold" }}>{formik.errors.correo}</span>
+                                                </Alert>
+                                          ) : null}
                                     </div>
                                     <div className={styles.input_all}>
                                           <label>Telefono</label>
                                           <input id="telefono" type="text" value={formik.values.telefono} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                                          {formik.touched.telefono && formik.errors.telefono ? <label style={{ color: "red", fontSize: 10 }}>*{formik.errors.telefono}</label> : null}
+                                          {formik.touched.telefono && formik.errors.telefono ? (
+                                                <Alert variant="danger">
+                                                      <span style={{ fontWeight: "bold" }}>{formik.errors.telefono}</span>
+                                                </Alert>
+                                          ) : null}
                                     </div>
                                     <div className={styles.input_all}>
                                           <button type="submit">{load ? <Spinner size="sm" animation="border" /> : "Solicitar Domicilio"}</button>
@@ -130,7 +154,7 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                                     {productsOrder.map((item, index) => {
                                           return (
                                                 <li key={index}>
-                                                      <span>{item.nombreProducto}</span> <span style={{ fontWeight: "bold" }}>${item.precioUnitario}</span>
+                                                      <span>{item.nombreProducto}</span> <span style={{ fontWeight: "bold" }}>${item.precioTotal}</span>
                                                 </li>
                                           )
                                     })}
@@ -143,6 +167,7 @@ const FormOrder = ({ productsOrder, clearItemsOrder, priceTotal }) => {
                               </div>
                         </div>
                   </Col>
+                  <ModalConfirm show={show} setShow={setShow} />
             </>
       )
 }
