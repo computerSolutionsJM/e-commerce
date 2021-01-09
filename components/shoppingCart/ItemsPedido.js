@@ -1,32 +1,11 @@
 import { connect } from "react-redux"
 
 import { Col, Table } from "react-bootstrap"
-import { MdDelete } from "react-icons/md"
-import toast, { Toaster } from "react-hot-toast"
 
 import CountProducts from "../shared/CountProducts"
-import { eliminarItemPedido } from "../../redux/PedidoDuck"
+import RemoveItem from "./removeItem"
 
-const ItemsPedido = ({ productosPedido, removeItem }) => {
-      const removeItem_ = id => {
-            toast(t => (
-                  <span style={{ display: "flex", flexDirection: "column" }}>
-                        <span>
-                              ¡Seguro de <b style={{ color: "#7fad39" }}>Eliminar</b>!
-                        </span>
-                        <span style={{ display: "flex", justifyContent: "space-around", marginTop: 3 }}>
-                              <button style={{ border: "none", background: "#ffffff" }} onClick={() => succesRemoveItem(id, t.id)}>Si</button>
-                              <button style={{ border: "none", background: "#ffffff" }} onClick={() => toast.dismiss(t.id)}>No</button>
-                        </span>
-                  </span>
-            ))
-      }
-
-      const succesRemoveItem = (idProduct, idToast) => {
-            removeItem(idProduct)
-            toast.dismiss(idToast)
-      }
-
+const ItemsPedido = ({ productosPedido }) => {
       return (
             <Col>
                   <Table responsive="sm">
@@ -64,7 +43,7 @@ const ItemsPedido = ({ productosPedido, removeItem }) => {
                                                 </td>
                                                 <td>
                                                       <div style={{ height: 80, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                                            <MdDelete onClick={() => removeItem_(item.idProducto)} style={{ width: 20, height: 20, cursor: "pointer" }} color="red" />
+                                                            <RemoveItem id={item.idProducto} />
                                                       </div>
                                                 </td>
                                           </tr>
@@ -72,7 +51,6 @@ const ItemsPedido = ({ productosPedido, removeItem }) => {
                               })}
                         </tbody>
                   </Table>
-                  <Toaster toastOptions={{ style: { border: "1px solid #7fad39", padding: "10px" } }} />
             </Col>
       )
 }
@@ -81,10 +59,4 @@ const mapStateToProps = state => ({
       productosPedido: state.pedidos.itemsPedido,
 })
 
-const mapDispatchToProps = dispatch => {
-      return {
-            removeItem: idProducto => dispatch(eliminarItemPedido(idProducto)),
-      }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsPedido)
+export default connect(mapStateToProps, null)(ItemsPedido)
