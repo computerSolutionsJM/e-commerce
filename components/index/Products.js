@@ -4,16 +4,39 @@ import { FiShoppingCart, FiSearch } from "react-icons/fi"
 import { BsFillStarFill } from "react-icons/bs"
 import { Col } from "react-bootstrap"
 
+import toast, { Toaster } from "react-hot-toast"
+
 import styles from "../../styles/index/products.module.css"
 import DetailProduct from "../shared/Detailproduct"
+import { detalleProducto } from "../../redux/productosDuck"
+import { agregarItemPedido } from "../../redux/PedidoDuck"
 
-const Products = ({ productos, triggerModal, addCart, changeSort, changeSortCategory }) => {
-
+const Products = ({ productos, categoria_productos, triggerModalDetail, changeSort, changeSortCategory, addItemOrder, flag }) => {
+      
       useEffect(() => {}, [changeSort, changeSortCategory])
+
+      const getProducts = () => {
+            let products = flag === 1 ? productos : categoria_productos
+            return products
+      }
+
+      const addCart = async item => {
+            let itemSend = {
+                  idProducto: item.id,
+                  nombreProducto: item.nombre,
+                  cantidad: 1,
+                  medida: item.nomenclaturaMedida,
+                  urlImagen: item.urlImagen,
+                  precioUnitario: item.precio,
+                  precioTotal: item.precio,
+            }
+            addItemOrder(itemSend)
+            toast.success("Producto Agregado!")
+      }
 
       return (
             <>
-                  {productos.map((item, index) => {
+                  {getProducts().map((item, index) => {
                         return (
                               <Col key={index} xs={6} md={4} style={{ marginTop: 15 }}>
                                     <div className={styles.product_grid} style={{ marginBottom: 8 }}>
@@ -43,7 +66,7 @@ const Products = ({ productos, triggerModal, addCart, changeSort, changeSortCate
                                                       </li>
                                                       <li
                                                             onClick={() => {
-                                                                  triggerModal(item)
+                                                                  triggerModalDetail(item)
                                                             }}
                                                       >
                                                             <span>
@@ -70,14 +93,24 @@ const Products = ({ productos, triggerModal, addCart, changeSort, changeSortCate
                         )
                   })}
                   <DetailProduct />
+                  <Toaster />
             </>
       )
 }
 
-
 const mapStateToProps = state => ({
-       changeSort: state.productos.changeSort,
-       changeSortCategory:state.categorias.changeSortCategory
+      changeSort: state.productos.changeSort,
+      changeSortCategory: state.categorias.changeSortCategory,
+      productos: state.productos.productos,
+      categoria_productos: state.categorias.categoriaProducts,
+      categoria_nombre: state.categorias.categoriaNombre,
 })
 
-export default connect(mapStateToProps, null)(Products)
+const mapDispatchToProps = dispatch => {
+      return {
+            triggerModalDetail: infoProduct => dispatch(detalleProducto(infoProduct)),
+            addItemOrder: item => dispatch(agregarItemPedido(item)),
+      }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products)

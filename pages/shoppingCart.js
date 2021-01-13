@@ -1,7 +1,6 @@
 import Head from "next/head"
 
 import { wrapper } from "../redux/store"
-import { connect } from "react-redux"
 import { getCategorias } from "../redux/CategoriasDuck"
 
 import { gql, GraphQLClient } from "graphql-request"
@@ -58,4 +57,4 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
       }
 })
 
-export default connect(null, null)(ShoppingCart)
+export default ShoppingCart

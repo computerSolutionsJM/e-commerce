@@ -10,25 +10,28 @@ import styles from '../../styles/index/filters.module.css'
 
 
 
-const Filters = ({ productos, flag , ordenarProductos, ordenarProductosCategoria }) => {
+const Filters = ({ productos, categoria_productos, flag , ordenarProductos, ordenarProductosCategoria }) => {
 
     const [open, setOpen] = useState(false);
     const [open_1, setOpen_1] = useState(false);
 
 
     const sortProductsMenorMayor = () => {
-        let prod = productos.sort((a, b) => b.precio - a.precio)
+        let getProducts = flag === 1 ? productos : categoria_productos
+        let prod = getProducts.sort((a, b) => b.precio - a.precio)
         flag === 1 ? ordenarProductos(prod) : ordenarProductosCategoria(prod)
     }
 
     const sortProductsMayorMenor = () => {
-        let prod = productos.sort((a, b) => a.precio - b.precio)
+        let getProducts = flag === 1 ? productos : categoria_productos
+        let prod = getProducts.sort((a, b) => a.precio - b.precio)
         flag === 1 ? ordenarProductos(prod) : ordenarProductosCategoria(prod)
     }
 
 
     const sortProductsAZ = () => {
-        let prod = productos.sort((a, b) => {
+        let getProducts = flag === 1 ? productos : categoria_productos
+        let prod = getProducts.sort((a, b) => {
             if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
                 return 1;
             } else if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
@@ -41,7 +44,8 @@ const Filters = ({ productos, flag , ordenarProductos, ordenarProductosCategoria
     }
 
     const sortProductsZA = () => {
-        let prod = productos.sort((a, b) => {
+        let getProducts = flag === 1 ? productos : categoria_productos
+        let prod = getProducts.sort((a, b) => {
             if (a.nombre.toLowerCase() < b.nombre.toLowerCase()) {
                 return 1;
             } else if (a.nombre.toLowerCase() > b.nombre.toLowerCase()) {
@@ -85,6 +89,14 @@ const Filters = ({ productos, flag , ordenarProductos, ordenarProductosCategoria
     );
 }
 
+
+
+const mapStateToProps = state => ({
+    productos: state.productos.productos,
+    categoria_productos: state.categorias.categoriaProducts,
+})
+
+
 const mapDispatchToProps = (dispatch) => {
     return {
         ordenarProductos: (productos) => dispatch(ordenarProductos(productos)),
@@ -94,4 +106,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(null, mapDispatchToProps)(Filters); 
+export default connect(mapStateToProps, mapDispatchToProps)(Filters); 

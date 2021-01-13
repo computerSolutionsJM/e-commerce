@@ -1,11 +1,10 @@
 import Head from "next/head"
 
 import { wrapper } from "../redux/store"
-import { connect } from "react-redux"
 import { getCategorias } from "../redux/CategoriasDuck"
 
 import { gql, GraphQLClient } from "graphql-request"
-import { Row, Col, Card } from "react-bootstrap"
+import { Row } from "react-bootstrap"
 
 import ContainerMain from "../components/shared/ContainerMain"
 import BannerMain from "../components/shoppingCart/BannerMain"
@@ -58,4 +57,4 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
       }
 })
 
-export default connect(null, null)(Contact)
+export default Contact

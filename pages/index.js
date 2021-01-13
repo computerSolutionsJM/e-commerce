@@ -2,13 +2,13 @@ import Head from "next/head"
 
 import { wrapper } from "../redux/store"
 import { connect } from "react-redux"
-import { detalleProducto, obtenerProductos_ } from "../redux/productosDuck"
+import { obtenerProductos_ } from "../redux/productosDuck"
 import { getCategorias } from "../redux/CategoriasDuck"
 import { agregarItemPedido } from "../redux/PedidoDuck"
 
 import { gql, GraphQLClient } from "graphql-request"
 import { Row, Col } from "react-bootstrap"
-import toast, { Toaster } from "react-hot-toast"
+
 
 import ContainerMain from "../components/shared/ContainerMain"
 import TitleProducts from "../components/shared/TitleProducts"
@@ -38,27 +38,9 @@ const GET_CATEGORIAS = gql`
       }
 `
 
-const Index = ({ productos, triggerModalDetail, addItemOrder }) => {
-     
+const Index = () => {
 
-      const triggerModal = infoProduct => {
-            triggerModalDetail(infoProduct)
-      }
-
-      const addCart = async item => {
-            let itemSend = {
-                  idProducto: item.id,
-                  nombreProducto: item.nombre,
-                  cantidad: 1,
-                  medida: item.nomenclaturaMedida,
-                  urlImagen: item.urlImagen,
-                  precioUnitario: item.precio,
-                  precioTotal: item.precio,
-            }
-            addItemOrder(itemSend)
-            toast.success("Producto Agregado!")
-      }
-
+   
       return (
             <>
                   <Head>
@@ -73,19 +55,19 @@ const Index = ({ productos, triggerModalDetail, addItemOrder }) => {
                   <ContainerMain>
                         <Row style={{ marginTop: 30 }}>
                               <Col>
-                                    <Filters productos={productos} flag={1} />
+                                    <Filters flag={1} />
                               </Col>
                               <Col lg={9}>
                                     <Row>
-                                          <TitleProducts title="Todos" numeroProductos={productos.length} />
+                                          <TitleProducts title="Todos" flag={1} />
                                     </Row>
                                     <Row>
-                                          <Products productos={productos} triggerModal={triggerModal} addCart={addCart} />
+                                          <Products flag={1}/>
                                     </Row>
                               </Col>
                         </Row>
                   </ContainerMain>
-                  <Toaster />
+                 
             </>
       )
 }
@@ -102,15 +84,6 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
       }
 })
 
-const mapStateToProps = state => ({
-      productos: state.productos.productos,
-})
 
-const mapDispatchToProps = dispatch => {
-      return {
-            triggerModalDetail: infoProduct => dispatch(detalleProducto(infoProduct)),
-            addItemOrder: item => dispatch(agregarItemPedido(item)),
-      }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(null, null)(Index)
