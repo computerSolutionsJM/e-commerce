@@ -66,7 +66,6 @@ const Category = () => {
                               </Col>
                         </Row>
                   </ContainerMain>
-                  <Toaster />
             </>
       )
 }
