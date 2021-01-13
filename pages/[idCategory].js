@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { useEffect } from "react"
+
 
 import { wrapper } from "../redux/store"
 import { connect } from "react-redux"
@@ -43,8 +43,7 @@ const GET_CATEGORY_DETALLE = gql`
       }
 `
 
-const Category = ({ categoria_productos, categoria_nombre, changeSortCategory, triggerModalDetail, addItemOrder }) => {
-      useEffect(() => {}, [changeSortCategory])
+const Category = ({ categoria_productos, categoria_nombre, triggerModalDetail, addItemOrder }) => {
 
       const triggerModal = infoProduct => {
             triggerModalDetail(infoProduct)
@@ -131,7 +130,6 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => ({
       categoria_productos: state.categorias.categoriaProducts,
       categoria_nombre: state.categorias.categoriaNombre,
-      changeSortCategory: state.categorias.changeSortCategory,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category)

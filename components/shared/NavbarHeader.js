@@ -1,3 +1,4 @@
+
 import styles from "../../styles/shared/NavbarHeader.module.css"
 import { Container } from "react-bootstrap"
 import { HiMail } from "react-icons/hi"
@@ -15,7 +16,7 @@ const NavbarHeader = () => {
                               </div>
                               <div>
                                     <FaFacebook />
-                                    <FaTwitter style={{margin: '0 10px'}}/>
+                                    <FaTwitter style={{ margin: "0 10px" }} />
                                     <FaInstagram />
                               </div>
                         </div>
@@ -24,4 +25,4 @@ const NavbarHeader = () => {
       )
 }
 
-export default NavbarHeader
+export default(NavbarHeader)

@@ -1,3 +1,5 @@
+
+
 import styles from "../../styles/shared/ContainerMain.module.css"
 import Navigation from "./Navigation"
 import NavSearch from "./NavSearch"
@@ -21,4 +23,4 @@ const ContainerMain = props => {
       )
 }
 
-export default ContainerMain
+export default (ContainerMain)

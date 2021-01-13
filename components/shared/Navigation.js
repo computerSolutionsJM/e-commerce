@@ -1,3 +1,5 @@
+
+
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { connect } from "react-redux"
@@ -26,9 +28,7 @@ const Navigation = ({ viewModalNavigation }) => {
                                     </li>
                                     <li>
                                           <Link href="/contact">
-                                                <a style={router.pathname === "/contact" ? { color: "#7fad39" } : { color: "black" }}>
-                                                      CONTACTO
-                                                </a>
+                                                <a style={router.pathname === "/contact" ? { color: "#7fad39" } : { color: "black" }}>CONTACTO</a>
                                           </Link>
                                     </li>
                                     <li>

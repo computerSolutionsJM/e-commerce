@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { useEffect } from "react"
 
 import { wrapper } from "../redux/store"
 import { connect } from "react-redux"
@@ -39,8 +38,8 @@ const GET_CATEGORIAS = gql`
       }
 `
 
-const Index = ({ productos, changeSort, triggerModalDetail, addItemOrder }) => {
-      useEffect(() => {}, [changeSort])
+const Index = ({ productos, triggerModalDetail, addItemOrder }) => {
+     
 
       const triggerModal = infoProduct => {
             triggerModalDetail(infoProduct)
@@ -105,7 +104,6 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store, params }) =
 
 const mapStateToProps = state => ({
       productos: state.productos.productos,
-      changeSort: state.productos.changeSort,
 })
 
 const mapDispatchToProps = dispatch => {

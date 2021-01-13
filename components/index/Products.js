@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+import { connect } from "react-redux"
 import { FiShoppingCart, FiSearch } from "react-icons/fi"
 import { BsFillStarFill } from "react-icons/bs"
 import { Col } from "react-bootstrap"
@@ -5,7 +7,10 @@ import { Col } from "react-bootstrap"
 import styles from "../../styles/index/products.module.css"
 import DetailProduct from "../shared/Detailproduct"
 
-const Products = ({ productos, triggerModal, addCart }) => {
+const Products = ({ productos, triggerModal, addCart, changeSort, changeSortCategory }) => {
+
+      useEffect(() => {}, [changeSort, changeSortCategory])
+
       return (
             <>
                   {productos.map((item, index) => {
@@ -69,4 +74,10 @@ const Products = ({ productos, triggerModal, addCart }) => {
       )
 }
 
-export default Products
+
+const mapStateToProps = state => ({
+       changeSort: state.productos.changeSort,
+       changeSortCategory:state.categorias.changeSortCategory
+})
+
+export default connect(mapStateToProps, null)(Products)
