@@ -7,33 +7,35 @@ import styles from "../../styles/shared/Navigation.module.css";
 import HeaderCart from "./HeaderCart";
 import { FaBars } from "react-icons/fa";
 
+import { motion } from 'framer-motion'
+
 const Navigation = ({ viewModalNavigation }) => {
 	const router = useRouter();
 	const handleShow = () => viewModalNavigation();
 
 	return (
-		<header className={styles.header_main}>
+		<motion.header className={styles.header_main}  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{delay:0.5, duration: 0.5}} >
 			<div className={styles.navbar_main}>
 				<div className={styles.navbar_main_img}>
-					<img src="/logoMain.png" alt="logo" />
+					<motion.img src="/logoMain.png" alt="logo" whileHover={{scale: 1.3}} />
 				</div>
 				<nav className={styles.navbar_main_menu}>
 					<ul>
-						<li>
+						<motion.li whileHover={{scale: 1.5}} transition={{type: 'spring', stiffness: 500}}>
 							<Link href="/">
 								<a style={router.pathname === "/" ? { color: "#7fad39" } : { color: "black" }}>INICIO</a>
 							</Link>
-						</li>
-						<li>
+						</motion.li>
+						<motion.li whileHover={{scale: 1.5}} transition={{type: 'spring', stiffness: 500}}>
 							<Link href="/contact">
 								<a style={router.pathname === "/contact" ? { color: "#7fad39" } : { color: "black" }}>CONTACTO</a>
 							</Link>
-						</li>
-						<li>
+						</motion.li>
+						<motion.li whileHover={{scale: 1.5}} transition={{type: 'spring', stiffness: 500}}>
 							<Link href="/shoppingCart">
 								<a style={router.pathname === "/shoppingCart" ? { color: "#7fad39" } : { color: "black" }}>CARRITO</a>
 							</Link>
-						</li>
+						</motion.li>
 					</ul>
 				</nav>
 				<div className={styles.navbar_main_menu_desktop}>
@@ -49,7 +51,7 @@ const Navigation = ({ viewModalNavigation }) => {
 				<HeaderCart />
 			</div>
 			<ModalNavigation />
-		</header>
+		</motion.header>
 	);
 };
 

@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import Link from "next/link";
 
+import { motion } from 'framer-motion'
+
 import { Accordion } from "react-bootstrap";
 import { FaPhone, FaBars } from "react-icons/fa";
 import { BsChevronDown } from "react-icons/bs";
@@ -25,7 +27,7 @@ const NavSearch = ({ categorias }) => {
 								{categorias.map((item, index) => {
 									return (
 										<Link href={"/[idCategory]"} as={`/${item.id}`} key={index}>
-											<li style={{ marginBottom: 10, cursor: "pointer" }}>{item.nombre}</li>
+											<motion.li whileHover={{scale: 1.2, originX: 0, color: '#7fad39'}} transition={{type: 'spring', stiffness: 500}} style={{ marginBottom: 10, cursor: "pointer" }}>{item.nombre}</motion.li>
 										</Link>
 									);
 								})}

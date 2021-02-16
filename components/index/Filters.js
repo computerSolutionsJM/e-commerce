@@ -8,6 +8,9 @@ import { ordenarProductosCategoria } from "../../redux/CategoriasDuck";
 import { BsChevronDown, BsChevronRight } from "react-icons/bs";
 import styles from "../../styles/index/filters.module.css";
 
+
+import { motion } from 'framer-motion'
+
 const Filters = ({ productos, categoria_productos, flag, ordenarProductos, ordenarProductosCategoria }) => {
 	const [open, setOpen] = useState(false);
 	const [open_1, setOpen_1] = useState(false);
@@ -61,12 +64,12 @@ const Filters = ({ productos, categoria_productos, flag, ordenarProductos, orden
 			<Collapse in={open} className={styles.main_order_collapse}>
 				<div id="example-collapse-text">
 					<ul style={{ paddingInlineStart: 0 }}>
-						<li onClick={sortProductsMenorMayor} style={{ cursor: "pointer", margin: "12px 0" }}>
+						<motion.li onClick={sortProductsMenorMayor} style={{ cursor: "pointer", margin: "12px 0" }}  whileHover={{scale: 1.2, originX: 0, color: '#7fad39'}} transition={{type: 'spring', stiffness: 500}}>
 							Mayor a Menor Precio
-						</li>
-						<li onClick={sortProductsMayorMenor} style={{ cursor: "pointer", margin: "12px 0" }}>
+						</motion.li>
+						<motion.li onClick={sortProductsMayorMenor} style={{ cursor: "pointer", margin: "12px 0" }}  whileHover={{scale: 1.2, originX: 0, color: '#7fad39'}} transition={{type: 'spring', stiffness: 500}}>
 							Menor a Mayor Precio
-						</li>
+						</motion.li>
 					</ul>
 				</div>
 			</Collapse>
@@ -78,14 +81,14 @@ const Filters = ({ productos, categoria_productos, flag, ordenarProductos, orden
 			<Collapse in={open_1} className={styles.main_order_collapse}>
 				<div id="example-collapse-text">
 					<ul style={{ paddingInlineStart: 0 }}>
-						<li onClick={sortProductsAZ} style={{ cursor: "pointer", margin: "12px 0" }}>
+						<motion.li onClick={sortProductsAZ} style={{ cursor: "pointer", margin: "12px 0" }}  whileHover={{scale: 1.2, originX: 0, color: '#7fad39'}} transition={{type: 'spring', stiffness: 500}}>
 							{" "}
 							A a la Z
-						</li>
-						<li onClick={sortProductsZA} style={{ cursor: "pointer", margin: "12px 0" }}>
+						</motion.li>
+						<motion.li onClick={sortProductsZA} style={{ cursor: "pointer", margin: "12px 0" }}  whileHover={{scale: 1.2, originX: 0, color: '#7fad39'}} transition={{type: 'spring', stiffness: 500}}>
 							{" "}
 							Z a la A
-						</li>
+						</motion.li>
 					</ul>
 				</div>
 			</Collapse>

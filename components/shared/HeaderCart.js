@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
+import { motion } from 'framer-motion'
+
 import { Badge } from "react-bootstrap";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsHeartFill } from "react-icons/bs";
@@ -31,7 +33,7 @@ const HeaderCart = ({ cantidadProductos, viewModalNavigation, showModal, precioT
 						</Badge>
 					</div>
 				</li>
-				<li style={{ display: "flex" }}>
+				<motion.li style={{ display: "flex" }} whileHover={{scale: 1.5}} transition={{type: 'spring', stiffness: 500}}>
 					<div style={{ cursor: "pointer" }} onClick={() => route("/shoppingCart")}>
 						<FiShoppingCart />
 					</div>
@@ -40,7 +42,7 @@ const HeaderCart = ({ cantidadProductos, viewModalNavigation, showModal, precioT
 							{cantidadProductos}
 						</Badge>
 					</div>
-				</li>
+				</motion.li>
 			</ul>
 			<div style={{ marginLeft: 10 }}>
 				Total:<span style={{ fontWeight: 700 }}>$ {precioTotalPedido}</span>

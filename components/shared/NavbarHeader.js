@@ -3,9 +3,11 @@ import { Container } from "react-bootstrap";
 import { HiMail } from "react-icons/hi";
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 
+import { motion } from 'framer-motion'
+
 const NavbarHeader = () => {
 	return (
-		<div className={styles.navbar_main}>
+		<motion.div className={styles.navbar_main}  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5}}>
 			<Container>
 				<div className={styles.navbar_main_container}>
 					<div>
@@ -20,7 +22,7 @@ const NavbarHeader = () => {
 					</div>
 				</div>
 			</Container>
-		</div>
+		</motion.div>
 	);
 };
 
